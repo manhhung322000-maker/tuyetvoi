@@ -189,6 +189,39 @@ input,textarea{font:inherit;width:100%;padding:10px 12px;margin:4px 0 10px;borde
 .ag2 .ti{border-radius:18px;border:2px solid rgba(255,255,255,.55);box-shadow:0 8px 20px rgba(0,0,0,.4)}
 .ag2 .ti img{border-radius:inherit}
 .lb img{border-radius:22px}
+
+/* ---- Công cụ tự thiết kế phong bì ---- */
+:root{--envelope-color:#800020;--gold-color:#e2bd62;--gold-light:#fff3c4;--gold-dark:#a8741f;--seal-color:#800020;--seal-ink:#f3dfa4}
+.custom-envelope-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:5;pointer-events:none}
+.custom-envelope-art[hidden]{display:none}
+.seal{background:var(--seal-color,#800020)!important;color:var(--seal-ink,#f3dfa4)!important;border-color:var(--gold-light,#f3dfa4)!important}
+.design-toggle{position:fixed;z-index:90;right:12px;top:calc(env(safe-area-inset-top,0px) + 12px);border:1px solid #e8c76a;border-radius:999px;background:#800020;color:#ffe3b0;padding:10px 14px;font:600 14px system-ui;box-shadow:0 6px 18px #0004;cursor:pointer}
+.design-panel{position:fixed;z-index:100;inset:0;background:rgba(24,0,8,.72);padding:12px;overflow:auto;display:grid;place-items:center}
+.design-panel[hidden]{display:none}
+.design-card{width:min(100%,520px);max-height:calc(100dvh - 24px);overflow:auto;background:#fff8ed;color:#4c1722;border:1px solid #d7b45c;border-radius:18px;padding:18px;box-shadow:0 20px 60px #0008;font:15px/1.45 system-ui}
+.design-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.design-head h2{font:600 22px Georgia,serif;margin:0;color:#800020}
+.design-close{border:0;background:#800020;color:#fff4d4;border-radius:10px;padding:8px 12px;font-size:20px;cursor:pointer}
+.design-help{font-size:13px;color:#76535a;margin:0 0 14px}
+.design-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.design-field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.design-field label{font-weight:650;font-size:13px}
+.design-field input[type="text"],.design-field input[type="number"],.design-field select{width:100%;min-height:40px;border:1px solid #d7c5b4;border-radius:9px;padding:8px;background:white;color:#38111a}
+.design-field input[type="color"]{width:100%;height:40px;border:1px solid #d7c5b4;border-radius:9px;padding:3px;background:white}
+.design-field input[type="range"]{width:100%;accent-color:#800020}
+.design-field input[type="file"]{font-size:12px;max-width:100%}
+.design-preview{display:flex;align-items:center;justify-content:center;background:#ead9c9;border-radius:12px;padding:18px;margin:14px 0;min-height:90px}
+.design-preview .mini-envelope{width:180px;aspect-ratio:1.47;background:var(--envelope-color,#800020);border:2px solid var(--gold-color,#e2bd62);display:grid;place-items:center;position:relative;box-shadow:0 8px 18px #0002;overflow:hidden}
+.design-preview .mini-envelope:before{content:"";position:absolute;inset:7px;border:1px solid var(--gold-color,#e2bd62);pointer-events:none}
+.design-preview .mini-envelope img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.design-preview .mini-seal{position:relative;z-index:1;width:var(--seal-size,38px);height:var(--seal-size,38px);display:grid;place-items:center;border:2px solid var(--gold-light,#fff3c4);background:var(--seal-color,#800020);color:var(--seal-ink,#f3dfa4);font-size:var(--seal-font,25px);line-height:1}
+.design-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.design-actions button{border:1px solid #a8741f;border-radius:10px;background:#800020;color:#fff3c4;padding:10px 12px;font-weight:650;cursor:pointer}
+.design-actions .secondary{background:#fff;color:#800020}
+.design-status{font-size:12px;color:#76535a;margin:10px 0 0}
+@media(max-width:420px){.design-grid{grid-template-columns:1fr 1fr}.design-card{padding:14px}.design-toggle{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 12px)}}
+@media print{.design-toggle,.design-panel{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -199,8 +232,8 @@ input,textarea{font:inherit;width:100%;padding:10px 12px;margin:4px 0 10px;borde
 <main class="stage" id="stage">
   <div class="env" id="env">
     <div class="back"></div><div class="letter"></div>
-    <svg class="sleeve" viewBox="0 0 300 204" aria-hidden="true"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".5" stop-color="#e2bd62"/><stop offset="1" stop-color="#a8741f"/></linearGradient></defs>
-<rect width="300" height="204" fill="#800020"/>
+    <svg class="sleeve" viewBox="0 0 300 204" aria-hidden="true"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--gold-light, #fff3c4)"/><stop offset=".5" stop-color="var(--gold-color, #e2bd62)"/><stop offset="1" stop-color="var(--gold-dark, #a8741f)"/></linearGradient></defs>
+<rect width="300" height="204" fill="var(--envelope-color, #800020)"/>
 <g fill="none" stroke="#e8c76a" stroke-opacity=".3" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round">
 <path d="M92 50c0-8 10-10 14-4 3-7 15-6 15 3 6-1 9 5 5 9H96c-6 0-8-5-4-8z"/>
 <path d="M186 54c0-8 10-10 14-4 3-7 15-6 15 3 6-1 9 5 5 9h-29c-6 0-8-5-4-8z"/>
@@ -244,7 +277,7 @@ input,textarea{font:inherit;width:100%;padding:10px 12px;margin:4px 0 10px;borde
 <rect x="72" y="156" width="206" height="26" rx="13" fill="#f6ebcf"/>
 <rect x="75" y="159" width="200" height="20" rx="10" fill="none" stroke="#d9b45a" stroke-width=".7"/>
 </svg>
-    <button class="seal" id="seal" aria-label="Mở thiệp">囍</button>
+    <img class="custom-envelope-art" id="customEnvelopeArt" alt="" hidden><button class="seal" id="seal" aria-label="Mở thiệp">囍</button>
   </div>
   <p class="hint h1" data-b="hintOpen"></p>
   <p class="hint h2" data-b="hintFlip"></p>
@@ -308,6 +341,31 @@ input,textarea{font:inherit;width:100%;padding:10px 12px;margin:4px 0 10px;borde
   <button id="lx" aria-label="Đóng">×</button><button id="lpv" aria-label="Ảnh trước">‹</button>
   <img id="li" alt=""><button id="lnx" aria-label="Ảnh sau">›</button><p id="lc"></p>
 </div>
+
+
+<button class="design-toggle" id="designToggle" type="button">🎨 Thiết kế phong bì</button>
+<section class="design-panel" id="designPanel" hidden role="dialog" aria-modal="true" aria-labelledby="designTitle">
+  <div class="design-card">
+    <div class="design-head"><h2 id="designTitle">Tự thiết kế phong bì</h2><button class="design-close" id="designClose" type="button" aria-label="Đóng">×</button></div>
+    <p class="design-help">Chỉnh các mục bên dưới để xem thay đổi ngay trên phong bì. Bản thiết kế được lưu trên trình duyệt của thiết bị này.</p>
+    <div class="design-grid">
+      <div class="design-field"><label for="designBg">Màu nền phong bì</label><input id="designBg" type="color" value="#800020"></div>
+      <div class="design-field"><label for="designGold">Màu họa tiết vàng</label><input id="designGold" type="color" value="#e2bd62"></div>
+      <div class="design-field"><label for="designSealBg">Màu nền chữ Hỷ</label><input id="designSealBg" type="color" value="#800020"></div>
+      <div class="design-field"><label for="designSealInk">Màu chữ Hỷ</label><input id="designSealInk" type="color" value="#f3dfa4"></div>
+      <div class="design-field"><label for="designText">Chữ ở giữa phong bì</label><input id="designText" type="text" maxlength="8" value="囍" placeholder="囍, 喜, tên..."></div>
+      <div class="design-field"><label for="designSealSize">Kích thước chữ / con dấu</label><input id="designSealSize" type="range" min="10" max="28" value="19"><span id="designSealSizeValue">19%</span></div>
+      <div class="design-field" style="grid-column:1/-1"><label for="designArt">Tải ảnh họa tiết riêng (PNG/WebP/JPG, ví dụ long phụng)</label><input id="designArt" type="file" accept="image/png,image/jpeg,image/webp"><span class="design-help">Ảnh trong suốt PNG thường cho kết quả đẹp nhất. Tải ảnh mới sẽ thay ảnh họa tiết đang dùng.</span></div>
+    </div>
+    <div class="design-preview"><div class="mini-envelope" id="designMiniEnvelope"><img id="designMiniArt" alt="" hidden><span class="mini-seal" id="designMiniSeal">囍</span></div></div>
+    <div class="design-actions">
+      <button id="designSave" type="button">Lưu thiết kế trên máy này</button>
+      <button id="designExport" type="button">Xuất cấu hình</button>
+      <button id="designReset" class="secondary" type="button">Khôi phục mặc định</button>
+    </div>
+    <p class="design-status" id="designStatus" role="status">Thay đổi sẽ được xem trước ngay lập tức.</p>
+  </div>
+</section>
 
 <script src="config.js"></script>
 <script>
@@ -400,6 +458,54 @@ input,textarea{font:inherit;width:100%;padding:10px 12px;margin:4px 0 10px;borde
     if(opened&&!reduce&&e.timeStamp-lastT>40){lastT=e.timeStamp;burst(e.clientX,e.clientY,1,.9)}});
   addEventListener("pointerup",function(e){if(e.pointerType!=="mouse")inside=false});
   document.addEventListener("pointerleave",function(){inside=false});
+
+
+  /* ---- envelope design editor ---- */
+  (function(){
+    var root=document.documentElement, seal=$("seal"), art=$("customEnvelopeArt");
+    var fields={bg:$("designBg"),gold:$("designGold"),sealBg:$("designSealBg"),sealInk:$("designSealInk"),txt:$("designText"),size:$("designSealSize")};
+    var mini=$("designMiniEnvelope"),miniSeal=$("designMiniSeal"),miniArt=$("designMiniArt"),status=$("designStatus");
+    var state={bg:"#800020",gold:"#e2bd62",sealBg:"#800020",sealInk:"#f3dfa4",txt:"囍",size:19,art:""};
+    function apply(save){
+      root.style.setProperty("--envelope-color",state.bg);
+      root.style.setProperty("--gold-color",state.gold);
+      root.style.setProperty("--gold-light",lighten(state.gold,.55));
+      root.style.setProperty("--gold-dark",darken(state.gold,.45));
+      root.style.setProperty("--seal-color",state.sealBg);
+      root.style.setProperty("--seal-ink",state.sealInk);
+      seal.textContent=state.txt||"囍";
+      seal.style.width="calc(var(--ew) * "+(Number(state.size)/100)+")";
+      seal.style.top="50%";
+      seal.style.fontSize="calc(var(--ew) * "+Math.max(.06,Number(state.size)*.58/100)+")";
+      mini.style.setProperty("--envelope-color",state.bg);
+      mini.style.setProperty("--gold-color",state.gold);
+      mini.style.setProperty("--gold-light",lighten(state.gold,.55));
+      mini.style.setProperty("--seal-color",state.sealBg);
+      mini.style.setProperty("--seal-ink",state.sealInk);
+      mini.style.setProperty("--seal-size",Math.max(24,Number(state.size)*2)+"px");
+      mini.style.setProperty("--seal-font",Math.max(16,Number(state.size)*1.3)+"px");
+      miniSeal.textContent=state.txt||"囍";
+      $("designSealSizeValue").textContent=state.size+"%";
+      if(state.art){art.src=state.art;art.hidden=false;miniArt.src=state.art;miniArt.hidden=false}
+      else{art.removeAttribute("src");art.hidden=true;miniArt.removeAttribute("src");miniArt.hidden=true}
+      if(save){try{localStorage.setItem("envelopeDesignV1",JSON.stringify(state));status.textContent="Đã lưu thiết kế trên trình duyệt này."}catch(e){status.textContent="Không lưu được. Có thể ảnh quá lớn; hãy dùng ảnh nhỏ hơn."}}
+    }
+    function lighten(hex,amt){return mix(hex,"#ffffff",amt)}
+    function darken(hex,amt){return mix(hex,"#000000",amt)}
+    function mix(a,b,t){var x=[1,3,5].map(function(i){return parseInt(a.slice(i,i+2),16)}),y=[1,3,5].map(function(i){return parseInt(b.slice(i,i+2),16)});return "#"+x.map(function(v,i){return Math.round(v+(y[i]-v)*t).toString(16).padStart(2,"0")}).join("")}
+    function syncFields(){fields.bg.value=state.bg;fields.gold.value=state.gold;fields.sealBg.value=state.sealBg;fields.sealInk.value=state.sealInk;fields.txt.value=state.txt;fields.size.value=state.size}
+    try{var saved=JSON.parse(localStorage.getItem("envelopeDesignV1"));if(saved)state=Object.assign(state,saved)}catch(e){}
+    syncFields();apply(false);
+    ["bg","gold","sealBg","sealInk","txt","size"].forEach(function(k){fields[k].addEventListener("input",function(){state[k]=k==="size"?Number(fields[k].value):fields[k].value;apply(false)})});
+    $("designArt").addEventListener("change",function(e){var f=e.target.files&&e.target.files[0];if(!f)return;if(!/^image\/(png|jpeg|webp)$/.test(f.type)){status.textContent="Vui lòng chọn ảnh PNG, JPG hoặc WebP.";return}
+      var r=new FileReader();r.onload=function(){state.art=String(r.result||"");apply(false);status.textContent="Đã nạp ảnh xem trước. Bấm “Lưu thiết kế” để lưu trên máy này."};r.onerror=function(){status.textContent="Không đọc được ảnh. Hãy thử một ảnh khác."};r.readAsDataURL(f)});
+    $("designToggle").addEventListener("click",function(){$("designPanel").hidden=false});
+    $("designClose").addEventListener("click",function(){$("designPanel").hidden=true});
+    $("designPanel").addEventListener("click",function(e){if(e.target===$("designPanel"))$("designPanel").hidden=true});
+    $("designSave").addEventListener("click",function(){apply(true)});
+    $("designReset").addEventListener("click",function(){state={bg:"#800020",gold:"#e2bd62",sealBg:"#800020",sealInk:"#f3dfa4",txt:"囍",size:19,art:""};syncFields();$("designArt").value="";apply(true);status.textContent="Đã khôi phục thiết kế mặc định."});
+    $("designExport").addEventListener("click",function(){var blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="thiet-ke-phong-bi.json";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},1000);status.textContent="Đã xuất cấu hình JSON. Lưu ý: file này chứa dữ liệu ảnh nếu bạn đã tải ảnh lên."});
+  })();
 
   $("seal").addEventListener("click",function(e){
     if(stage.classList.contains("opening"))return;
