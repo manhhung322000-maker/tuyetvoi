@@ -47,6 +47,7 @@ body{margin:0;color:var(--ink);font-family:"Cormorant Garamond","Times New Roman
 @keyframes flap{0%{transform:rotateX(0);z-index:5}49%{z-index:5}50%{z-index:2}100%{transform:rotateX(180deg);z-index:2}}
 .opening .letter{transform:translateY(-68%)}
 .open .env{transform:translateY(55vh) scale(.7)!important;opacity:0;pointer-events:none}
+
 /* card */
 .card3d{--w:min(86vw,380px,calc((100svh - 130px)/1.5));width:var(--w);height:calc(var(--w)*1.5);font-size:calc(var(--w)/22.5);
   position:relative;transform-style:preserve-3d;opacity:0;visibility:hidden;transform:scale(.8);will-change:transform;cursor:pointer;outline:none}
@@ -175,13 +176,22 @@ input,textarea{font:inherit;width:100%;padding:10px 12px;margin:4px 0 10px;borde
 .cnt{margin:10px 0 10px;color:#f0d487;font-style:italic;font-size:17px;letter-spacing:.1em}
 .alb button.b{background:transparent;color:#ffe3b0;border-color:#e8c76a}
 
-/* envelope: sleeve kiểu thiệp truyền thống (không chữ) */
-.env .sleeve{inset:0;width:100%;height:100%;z-index:4;pointer-events:none;display:block}
-.seal{left:50%;top:41%;width:calc(var(--ew)*.17);aspect-ratio:1;clip-path:none;padding:0;border:2px solid #f3dfa4;border-radius:2px;
-  background:#800020;color:#f3dfa4;font:600 calc(var(--ew)*.11)/1 "Noto Serif SC","Songti SC",serif;display:grid;place-items:center;
-  box-shadow:0 0 0 3px #800020,0 0 0 4px #e2bd62,0 0 18px rgba(255,214,120,.45)}
-.seal:focus-visible{outline:2px solid #fff;outline-offset:6px;filter:none}
-.env::after{border-radius:2px}
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs id="df"></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><clipPath id="hc" clipPathUnits="objectBoundingBox"><path d="M0.5,0.96 C0.12,0.68 0,0.45 0,0.28 C0,0.11 0.13,0 0.28,0 C0.4,0 0.47,0.07 0.5,0.15 C0.53,0.07 0.6,0 0.72,0 C0.87,0 1,0.11 1,0.28 C1,0.45 0.88,0.68 0.5,0.96Z"/></clipPath></svg>
+<canvas id="fx0"></canvas><canvas id="fx"></canvas>
+
+<main class="stage" id="stage">
+  <div class="env" id="env">
+    <div class="back"></div><div class="letter"></div><div class="pocket"><i class="fl"></i><i class="fr"></i><i class="fb"></i></div><div class="flap"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,0 100,0 50,100" fill="none" stroke="#f0d487" stroke-width="5" vector-effect="non-scaling-stroke"/></svg></div>
+    <svg class="vp" viewBox="0 0 100 68" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,0 50,38 100,0" fill="none" stroke="#f0d487" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>
+    
+    <svg class="orn" viewBox="0 0 140 140" data-g></svg>
+    <div class="sealsh"></div><div class="sealrim"></div><button class="seal" id="seal" aria-label="Mở thiệp">囍</button>
+  </div>
+  <p class="hint h1" data-b="hintOpen"></p>
+  <p class="hint h2" data-b="hintFlip"></p>
+
+  <div class="gnd" id="gnd"></div>
 /* album: bo góc đồng bộ */
 .ag.cf .ti{border-radius:22px;isolation:isolate;-webkit-mask-image:-webkit-radial-gradient(white,black)}
 .ag.cf .ti img{border-radius:22px}
