@@ -167,21 +167,59 @@ input,textarea{font:inherit;width:100%;padding:10px 12px;margin:4px 0 10px;borde
 #ax{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;background:#0006;border:1px solid #e8c76a;color:#ffe3b0;font-size:30px;line-height:1;width:48px;height:48px;cursor:pointer;padding:0;z-index:2}
 @media print{.am{display:none!important}}
 
-/* album coverflow */
+/* ================= ALBUM COVERFLOW FIX 100% BO GÓC ================= */
 .panel.alb{background:none;border:0;padding:0;margin-bottom:26px}
 .alb h3{display:inline-block;margin:0 0 18px;font:600 19px "Cormorant Garamond","Times New Roman",serif;letter-spacing:.22em;color:var(--rose);background:var(--ivory);border:1px solid var(--rg);outline:1px solid var(--rg);outline-offset:-5px;border-radius:12px;padding:12px 36px;box-shadow:0 6px 18px rgba(25,0,6,.4)}
-.ag.cf{display:block;position:relative;overflow:hidden;perspective:900px;scroll-snap-type:none;touch-action:pan-y;user-select:none;-webkit-user-select:none}
-.ag.cf .ti{position:absolute;left:50%;top:20px;flex:none;width:var(--cw);height:calc(var(--cw)*1.5);aspect-ratio:auto;border:2px solid rgba(255,255,255,.55);border-radius:22px;overflow:hidden;box-shadow:0 14px 30px rgba(25,0,6,.55);transition:transform .55s cubic-bezier(.3,.9,.3,1),opacity .55s}
-.ag.cf .ti img{pointer-events:none;-webkit-user-drag:none;border-radius:inherit}.ag.cf .ti:hover img{transform:none}
-.cnt{margin:10px 0 10px;color:#f0d487;font-style:italic;font-size:17px;letter-spacing:.1em}
-.alb button.b{background:transparent;color:#ffe3b0;border-color:#e8c76a}
-/* album: bo góc đồng bộ */
-.ag.cf .ti{border-radius:22px;isolation:isolate;-webkit-mask-image:-webkit-radial-gradient(white,black)}
-.ag.cf .ti img{border-radius:22px}
-.ag2 .ti{border-radius:18px;border:2px solid rgba(255,255,255,.55);box-shadow:0 8px 20px rgba(0,0,0,.4)}
-.ag2 .ti img{border-radius:inherit}
-.lb img{border-radius:22px}
 
+.ag.cf{display:block;position:relative;overflow:hidden;perspective:900px;scroll-snap-type:none;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+
+/* Khung `.ti` chỉ làm nhiệm vụ dịch chuyển 3D và làm mờ, không chứa viền hay ảnh trực tiếp */
+.ag.cf .ti{
+  position: absolute; 
+  left: 50%; 
+  top: 20px; 
+  flex: none; 
+  width: var(--cw); 
+  height: calc(var(--cw) * 1.5); 
+  aspect-ratio: auto; 
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transition: transform .55s cubic-bezier(.3,.9,.3,1), opacity .55s, filter .55s;
+}
+
+/* Tạo một lớp thẻ bọc bên trong `.ti` để hiển thị khung viền, đổ bóng và ép bo góc tuyệt đối */
+.ag.cf .ti .img-box {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  border: 2px solid rgba(255,255,255,.55);
+  border-radius: 22px !important;
+  overflow: hidden !important;
+  box-shadow: 0 14px 30px rgba(25,0,6,.55);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+/* Thẻ ảnh bên trong bám chặt vào lớp bọc đã bo góc */
+.ag.cf .ti .img-box img{
+  position: absolute;
+  inset: 0;
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  border-radius: inherit;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  display: block;
+}
+
+.ag.cf .ti:hover img{transform:none}
+
+/* Album dạng lưới mở rộng & Lightbox */
+.ag2{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:720px;margin:0 auto}
+.ag2 .ti{padding:0;margin:0;border:1px solid var(--rg);background:#fff;aspect-ratio:1;cursor:pointer;overflow:hidden;border-radius:18px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.ag2 .ti img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
+.lb img{border-radius:22px}
 /* ---- Công cụ tự thiết kế phong bì ---- */
 :root{--envelope-color:#800020;--gold-color:#e2bd62;--gold-light:#fff3c4;--gold-dark:#a8741f;--seal-color:#800020;--seal-ink:#f3dfa4}
 .custom-envelope-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:5;pointer-events:none}
@@ -219,6 +257,12 @@ input,textarea{font:inherit;width:100%;padding:10px 12px;margin:4px 0 10px;borde
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs id="df"></defs></svg>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><clipPath id="hc" clipPathUnits="objectBoundingBox"><path d="M0.5,0.96 C0.12,0.68 0,0.45 0,0.28 C0,0.11 0.13,0 0.28,0 C0.4,0 0.47,0.07 0.5,0.15 C0.53,0.07 0.6,0 0.72,0 C0.87,0 1,0.11 1,0.28 C1,0.45 0.88,0.68 0.5,0.96Z"/></clipPath></svg>
 <canvas id="fx0"></canvas><canvas id="fx"></canvas>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <clipPath id="card-clip" clipPathUnits="objectBoundingBox">
+    <!-- Tạo khung chữ nhật bo góc chuẩn (border-radius tương đương) -->
+    <path d="M0.08,0 C0.035,0, 0,0.035, 0,0.08 L0,0.92 C0,0.965, 0.035,1, 0.08,1 L0.92,1 C0.965,1, 1,0.965, 1,0.92 L1,0.08 C1,0.035, 0.965,0, 0.92,0 Z"/>
+  </clipPath>
+</svg>
 
 <main class="stage" id="stage">
   <div class="env" id="env">
@@ -330,13 +374,37 @@ input,textarea{font:inherit;width:100%;padding:10px 12px;margin:4px 0 10px;borde
   }
   var LI=0;
   var AI=0,px=0,mv=false;
-  function mk(u,i,fn){var b=document.createElement("button");b.className="ti";b.setAttribute("aria-label","Ảnh "+(i+1));var im=document.createElement("img");im.src=u;im.alt="Ảnh cưới "+(i+1);im.loading="lazy";im.draggable=false;b.appendChild(im);b.onclick=fn;return b}
+  function mk(u, i, fn) {
+    var b = document.createElement("button");
+    b.className = "ti";
+    b.setAttribute("aria-label", "Ảnh " + (i + 1));
+    
+    var wrap = document.createElement("div");
+    wrap.className = "img-box";
+    
+    var im = document.createElement("img");
+    im.src = u;
+    im.alt = "Ảnh cưới " + (i + 1);
+    im.loading = "lazy";
+    im.draggable = false;
+    
+    wrap.appendChild(im);
+    b.appendChild(wrap);
+    b.onclick = fn;
+    return b;
+  }
   function openAm(){$("am").hidden=false;burst(innerWidth/2,innerHeight*.3,reduce?4:24,3)}
   function cfPos(){var n=(D.album||[]).length,box=$("ag"),bw=Math.min(innerWidth,520)-32,cw=Math.min(bw*.56,250);
     box.style.setProperty("--cw",cw+"px");box.style.height=(cw*1.5+40)+"px";
     [].forEach.call(box.children,function(el,i){var d=i-AI;if(d>n/2)d-=n;if(d<-n/2)d+=n;var ad=Math.abs(d),sg=d<0?-1:1,s=ad===0?1:ad===1?.78:.6;
       el.style.transform="translateX(-50%) translateX("+(ad===1?sg*cw*.68:ad===2?sg*cw*.98:ad>2?sg*cw*1.2:0)+"px) rotateY("+(ad?-sg*36:0)+"deg) scale("+s+")";
-      el.style.zIndex=10-Math.min(ad,9);el.style.opacity=ad>2?0:ad===0?1:ad===1?.9:.55;el.style.pointerEvents=ad>2?"none":"auto"});
+      el.style.zIndex=10-Math.min(ad,9);
+      
+      /* Làm mờ các ảnh ở 2 bên */
+      el.style.opacity = ad === 0 ? 1 : 0.45; 
+      el.style.filter = ad === 0 ? "blur(0px)" : "blur(3px)";
+      
+      el.style.pointerEvents = ad > 2 ? "none" : "auto";});
     $("cnt").textContent=n?(AI+1)+" / "+n:""}
   function go(i){var n=(D.album||[]).length;if(!n)return;AI=(i+n)%n;cfPos()}
   function drawAlb(){var a=D.album||[],box=$("ag"),b2=$("ag2");box.textContent="";b2.textContent="";$("alb").hidden=!a.length;AI=Math.min(AI,Math.max(a.length-1,0));
