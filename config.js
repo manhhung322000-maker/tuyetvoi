@@ -37,9 +37,10 @@ window.CONFIG = {
        "images/anh2.jpg",
      Có thể dùng cả link ảnh đầy đủ: "https://...jpg"                       */
   album: [
-    "anh1.jpg",
-    "anh2.jpg",
-    "anh3.jpg",
+    "1.jpg",
+    "2.jpg",
+    "3.jpg",
+    "4.jpg",
   ],
 
   /* ---------- Chữ trên giao diện ---------- */
