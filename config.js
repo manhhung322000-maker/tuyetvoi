@@ -1,6 +1,6 @@
 /* ============================================================
    CONFIG.JS - SỬA TOÀN BỘ NỘI DUNG THIỆP Ở ĐÂY
-   Chỉ cần sửa chữ nằm giữa dấu "" rồi lưu file. Không sửa tên (bên trái dấu :).
+   Chỉ cần sửa chữ nằm giữa dấu "" rồi lưu file. Không sửa tên (bên trái dấu :
    ============================================================ */
 window.CONFIG = {
 
