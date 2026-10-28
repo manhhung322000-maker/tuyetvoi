@@ -28,7 +28,7 @@ window.CONFIG = {
   mapurl: "",                  // dán link Google Maps vào đây (để trống sẽ tự tìm theo địa chỉ)
 
   /* ---------- Ảnh cưới (hiện ở mặt sau thiệp, thay cho phần tên) ---------- */
-  photo: "",                   // ví dụ: "images/cuoi.jpg" (để trống nếu không dùng)
+  photo: "anhcuoi.jpg",                   // ví dụ: "images/cuoi.jpg" (để trống nếu không dùng)
 
   /* ---------- ALBUM ẢNH ----------
      Bỏ ảnh vào thư mục images/ cạnh file index.html rồi thêm đường dẫn vào đây.
@@ -37,16 +37,16 @@ window.CONFIG = {
        "images/anh2.jpg",
      Có thể dùng cả link ảnh đầy đủ: "https://...jpg"                       */
   album: [
-    // "images/anh1.jpg",
-    // "images/anh2.jpg",
-    // "images/anh3.jpg",
+    "anh1.jpg",
+    "anh2.jpg",
+    "anh3.jpg",
   ],
 
   /* ---------- Chữ trên giao diện ---------- */
   hintOpen: "Chạm vào dấu niêm để mở thiệp",
-  hintFlip: "Chạm để lật thiệp, kéo hoặc rê để nghiêng",
-  cardTitle: "THIỆP MỜI CƯỚI",
-  tapHint: "chạm để lật xem chi tiết",
+  hintFlip: "Chạm để lật thiệp",
+  cardTitle: "THIỆP MỜI",
+  tapHint: "chạm để xem chi tiết",
   brideSide: "NHÀ GÁI",
   groomSide: "NHÀ TRAI",
   atTime: "Vào lúc",
