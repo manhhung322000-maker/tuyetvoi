@@ -670,7 +670,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a.b:focus-visibl
     var mx=50+cy0*2.4,my=50-cx0*2.4;
     if(opened){var bob=reduce?0:Math.sin(t/800)*7;card.style.transform="translateY("+bob+"px) scale(1.02) rotateX("+cx0+"deg) rotateY("+(cy0+flipCur)+"deg)";$("gnd").style.setProperty("--gx",-cy0*2);$("gnd").style.setProperty("--gs",(1-bob/70).toFixed(3));
       card.style.setProperty("--mx",flipCur>90?100-mx:mx);card.style.setProperty("--my",my)}
-    else env.style.transform="rotateX("+(16+cx0*.7)+"deg) rotateY("+(-8+cy0*.7)+"deg)";
+    else env.style.transform="none";
     draw(t);requestAnimationFrame(loop)}
   requestAnimationFrame(loop);
   addEventListener("pointermove",function(e){
