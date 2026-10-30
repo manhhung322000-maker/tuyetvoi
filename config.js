@@ -50,12 +50,12 @@ window.CONFIG = {
   baddr: "82 Đường Chiến Thắng, Thôn Bờ Chùa, An Lạc, Chí Linh, Hải Dương cũ",
 
   /* ---------- Thời gian & địa điểm ---------- */
-  date: "2026-12-19",          // định dạng: năm-tháng-ngày
+  date: "2026-12-20",          // định dạng: năm-tháng-ngày
   time: "11:00",               // định dạng: giờ:phút (24h)
-  lunar: "nhằm ngày 11 tháng 11 năm Bính Ngọ",
+  lunar: "nhằm ngày 12 tháng 11 năm Bính Ngọ",
   venue: "Tư gia",
-  addr: "Thôn 5, Xã Vũ Quý, Kiến Xương, Tp Thái Bình cũ",
-  mapurl: "",                  // dán link Google Maps vào đây (để trống sẽ tự tìm theo địa chỉ)
+  addr: "82 Đường Chiến Thắng, Thôn Bờ Chùa, An Lạc, Chí Linh, Hải Dương cũ",
+  mapurl: "https://maps.app.goo.gl/TFuzGR17BvocjU568",                  // dán link Google Maps vào đây (để trống sẽ tự tìm theo địa chỉ)
 
   /* ---------- Ảnh cưới (hiện ở mặt sau thiệp, thay cho phần tên) ---------- */
   photo: "anhcuoi.jpg",                   // ví dụ: "images/cuoi.jpg" (để trống nếu không dùng)
