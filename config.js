@@ -3,62 +3,34 @@
    Chỉ cần sửa chữ nằm giữa dấu "" rồi lưu file. Không sửa tên (bên trái dấu :
    ============================================================ */
 window.CONFIG = {
-  /* ---------- Giao diện: chỉ sửa các giá trị trong appearance ---------- */
-  appearance: {
-    /* Font từng phần: nhập tên font, ví dụ "Arial", "Georgia", "Great Vibes" */
-    fonts: {
-// Font chữ mặc định của toàn bộ trang thiệp
-      page: '"Cormorant Garamond", serif',
+  /* ============================================================
+     FONT CHỮ - đổi tên font theo từng loại nội dung
+     Tên font lấy ở fonts.google.com (gõ đúng tên, nhớ chọn font có
+     hỗ trợ TIẾNG VIỆT). Gợi ý: "Great Vibes", "Allura", "Dancing Script",
+     "Playfair Display", "Cormorant Garamond", "EB Garamond", "Lora",
+     "Noto Serif", "Prata", "Be Vietnam Pro".
+     Nếu gõ sai tên hoặc máy khách không có mạng, thiệp tự dùng font dự phòng.
+     ============================================================ */
+  fonts: {
+    names:   "Allura",              // Tên cô dâu chú rể
+    titles:  "Allura",              // Tiêu đề viết tay: Sổ lưu bút, Chỉ đường, Tháng...
+    labels:  "Playfair Display",    // Nhãn in hoa: THIỆP MỜI CƯỚI, NHÀ GÁI, Tư gia...
+    numbers: "Lora",                // Ngày tháng, đếm ngược, lịch (chọn font số thẳng hàng, không bị lệch dòng)
+    body:    "Cormorant Garamond"   // Lời mời, địa chỉ và nội dung thường
+  },
 
-// Font chữ của dòng hướng dẫn mở thiệp trên phong bì
-      envelopeHint: '"Cormorant Garamond", serif',
-
-// Font chữ tiêu đề chính ở mặt trước thiệp
-      frontTitle: '"Cormorant Garamond", serif',
-
-// Font chữ tên cô dâu và chú rể ở mặt trước thiệp
-      coupleNames: '"Bonheur Royale", cursive',
-
-// Font chữ phần mô tả ngắn ở mặt trước thiệp
-      frontDescription: '"Cormorant Garamond", serif',
-
-// Font chữ tiêu đề ở mặt trong thiệp
-      backTitle: '"Great Vibes", cursive',
-
-// Font chữ nội dung lời mời ở mặt trong thiệp
-      invitationText: '"Cormorant Garamond", serif',
-
-// Font chữ tên bố mẹ / gia đình hai bên
-      familyNames: '"Cormorant Garamond", serif',
-
-// Font chữ phần ngày, giờ tổ chức lễ cưới
-      dateTime: '"Cormorant Garamond", serif',
-
-// Font chữ phần địa điểm tổ chức đám cưới
-      venue: '"Cormorant Garamond", serif',
-
-// Font chữ các mục nội dung phía dưới thiệp
-// Ví dụ: câu chuyện tình yêu, thông tin bổ sung...
-      afterSections: '"Cormorant Garamond", serif',
-
-// Font chữ tiêu đề album ảnh
-      albumTitle: '"Cormorant Garamond", serif',
-
-// Font chữ trên các nút bấm
-// Ví dụ: nút mở thiệp, xem ảnh, xác nhận...
-      buttons: '"Cormorant Garamond", serif',
-
-// Font chữ trong phần lời chúc của khách mời
-      wishes: '"Cormorant Garamond", serif'
-    },
-    /* Màu nền: có thể dùng mã màu hoặc gradient CSS */
-    colors: {
-      background: '#CCCCFF',
-      cardFront: '#800020',
-      cardBack: 'linear-gradient(#fffaf2, #fff0de)',
-      envelope: '#800000',
-      afterPanels: '#fbeff1'
-    }
+  /* ============================================================
+     MÀU SẮC - dùng mã màu dạng #rrggbb (tra "color picker" trên Google)
+     ============================================================ */
+  colors: {
+    page1: "#d42a3e",      // nền trang: màu sáng ở giữa
+    page2: "#9a1428",      // nền trang: màu giữa
+    page3: "#520813",      // nền trang: màu tối ở rìa
+    cardFront: "#800020",  // mặt trước thiệp
+    cardBack: "#fffaf2",   // mặt sau thiệp
+    gold: "#d9b45a",       // màu viền vàng
+    accent: "#800020",     // màu tiêu đề, nút và chữ nhấn
+    text: "#3d000e"        // màu chữ trên nền sáng
   },
 
 
@@ -101,11 +73,20 @@ window.CONFIG = {
     "4.jpg",
   ],
 
+  /* ---------- NHẠC NỀN ----------
+     Bỏ file nhạc (mp3) vào cùng thư mục với index.html rồi ghi tên file vào đây.
+     Muốn đổi bài: thay tên file khác. Để trống "" nếu không dùng nhạc.
+     Nên đặt tên file không dấu, không khoảng trắng (ví dụ: nhac.mp3).
+     Nhạc tự phát khi khách chạm vào nút thắt vàng mở thiệp. */
+  music: "nhac.mp3",
+  musicVolume: 0.5,            // âm lượng từ 0 đến 1
+
   /* ---------- Chữ trên giao diện ---------- */
   hintOpen: "Chạm vào nút thắt vàng để mở thiệp",
   hintFlip: "Chạm để lật thiệp",
   cardTitle: "THIỆP MỜI",
-  tapHint: "chạm để xem chi tiết",
+  ceremony: "LỄ THÀNH HÔN",   // dòng chữ dưới "THIỆP MỜI" ở mặt trước thiệp
+  tapHint: "Chạm để xem chi tiết",
   brideSide: "NHÀ GÁI",
   groomSide: "NHÀ TRAI",
   atTime: "Vào lúc",
@@ -124,6 +105,9 @@ window.CONFIG = {
   mapTitle: "Chỉ đường",
   mapBtn: "Mở Google Maps để chỉ đường",
   printBtn: "In thiệp (A5, 2 mặt)",
+
+  // Link Google Apps Script để mọi khách xem được lời chúc của nhau (để trống "" = chỉ lưu trên máy từng người)
+  wishUrl: "https://script.google.com/macros/s/AKfycbzzS8mzylHTBeokNJvU_QOtf4jEgPwC0xdxr2rwhICts9JhI5RqvRkZh2eLhjuJfZv1ag/exec",
 
   wishTitle: "Sổ lưu bút",
   wishSub: "Gửi lời chúc đến cô dâu chú rể",
