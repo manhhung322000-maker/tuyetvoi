@@ -12,11 +12,40 @@ window.CONFIG = {
      Nếu gõ sai tên hoặc máy khách không có mạng, thiệp tự dùng font dự phòng.
      ============================================================ */
   fonts: {
-    names:   "Allura",              // Tên cô dâu chú rể
+    names:   "Great Vibes",              // Tên cô dâu chú rể
     titles:  "Allura",              // Tiêu đề viết tay: Sổ lưu bút, Chỉ đường, Tháng...
     labels:  "Playfair Display",    // Nhãn in hoa: THIỆP MỜI CƯỚI, NHÀ GÁI, Tư gia...
     numbers: "Lora",                // Ngày tháng, đếm ngược, lịch (chọn font số thẳng hàng, không bị lệch dòng)
     body:    "Cormorant Garamond"   // Lời mời, địa chỉ và nội dung thường
+  },
+
+  /* ============================================================
+     TỈ LỆ CỠ CHỮ - mỗi font to nhỏ khác nhau nên chỉnh ở đây
+     1 = giữ nguyên | 0.9 = nhỏ lại 10% | 1.2 = to lên 20%
+     Sửa số rồi lưu file, tải lại trang (Ctrl+F5) để xem.
+     ============================================================ */
+  fontScale: {
+    names:   0.9,    // Tên cô dâu chú rể
+    titles:  1,    // Tiêu đề viết tay
+    labels:  1,    // Nhãn in hoa
+    numbers: 1,    // Ngày tháng, đếm ngược, lịch
+    body:    1     // Lời mời, địa chỉ, nội dung thường
+  },
+
+  /* ============================================================
+     VỊ TRÍ CAO / THẤP CỦA CHỮ - chỉ dời chữ, KHÔNG đẩy phần khác
+     0 = giữ nguyên | số dương = dời XUỐNG | số âm = dời LÊN
+     1 đơn vị ~ 1 dòng chữ nhỏ (khoảng 17px). Có thể dùng số lẻ: 0.5, -0.3...
+     ============================================================ */
+  fontOffset: {
+    names:   0.5,    // Tên cô dâu chú rể (cả mặt trước và sau)
+    bride:   0,    // Cộng thêm: riêng tên cô dâu ở mặt trước
+    groom:   0,    // Cộng thêm: riêng tên chú rể ở mặt trước
+    amp:     0,    // Chỉnh thêm riêng dấu & (mặc định tự nằm giữa hai tên)
+    titles:  0,    // Tiêu đề viết tay
+    labels:  0,    // Nhãn in hoa
+    numbers: 0,    // Ngày tháng, đếm ngược
+    body:    0     // Lời mời, địa chỉ, nội dung thường
   },
 
   /* ============================================================
@@ -52,10 +81,10 @@ window.CONFIG = {
   /* ---------- Thời gian & địa điểm ---------- */
   date: "2026-12-20",          // định dạng: năm-tháng-ngày
   time: "11:00",               // định dạng: giờ:phút (24h)
-  lunar: "nhằm ngày 12 tháng 11 năm Bính Ngọ",
+  lunar: "nhằm ngày 11 tháng 11 năm Bính Ngọ",
   venue: "Tư gia",
   addr: "82 Đường Chiến Thắng, Thôn Bờ Chùa, An Lạc, Chí Linh, Hải Dương cũ",
-  mapurl: "https://maps.app.goo.gl/TFuzGR17BvocjU568",                  // dán link Google Maps vào đây (để trống sẽ tự tìm theo địa chỉ)
+  mapurl: ""https://maps.app.goo.gl/TFuzGR17BvocjU56",                  // dán link Google Maps vào đây (để trống sẽ tự tìm theo địa chỉ)
 
   /* ---------- Ảnh cưới (hiện ở mặt sau thiệp, thay cho phần tên) ---------- */
   photo: "anhcuoi.jpg",                   // ví dụ: "images/cuoi.jpg" (để trống nếu không dùng)

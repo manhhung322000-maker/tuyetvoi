@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Thiệp mời cưới</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Qwigley&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Ballet&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Italianno&family=Parisienne&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&family=Sacramento&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
@@ -647,6 +650,60 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a.b:focus-visibl
   (function(){var f=(DEF.fonts||{}).numbers||"Lora";
     var l=document.createElement("link");l.rel="stylesheet";var fam=encodeURIComponent(f).replace(/%20/g,"+");l.href="https://fonts.googleapis.com/css2?family="+fam+":wght@400;500;600;700&display=swap";l.onerror=function(){l.onerror=null;l.href="https://fonts.googleapis.com/css2?family="+fam+"&display=swap"};document.head.appendChild(l);
     document.documentElement.style.setProperty("--f-num",'"'+f+'"')})();
+
+  /* ---- Áp dụng font + màu từ config.js (fonts.names/titles/labels/body, colors) ---- */
+  (function(){
+    var F=DEF.fonts||{},C=DEF.colors||{},st=document.createElement("style"),css="",seen={};
+    function load(f){if(!f||seen[f])return;seen[f]=1;var l=document.createElement("link");l.rel="stylesheet";
+      var fam=encodeURIComponent(f).replace(/%20/g,"+");
+      l.href="https://fonts.googleapis.com/css2?family="+fam+":wght@400;500;600;700&display=swap";
+      l.onerror=function(){l.onerror=null;l.href="https://fonts.googleapis.com/css2?family="+fam+"&display=swap"};
+      document.head.appendChild(l)}
+    function rule(sel,f,fb){if(!f)return;load(f);css+=sel+'{font-family:"'+f+'",'+fb+'!important}\n'}
+    rule('body,.hint,.fi,.fp,.inv,.fam,.venue,.thanks,.date small,.date,.panel p,.wish,.w,input,textarea,button,a.b,.ftxt',F.body,'"Times New Roman",serif');
+    rule('.nm,.back .sm,.names',F.names,'cursive');
+    rule('.cal h3,.map h3,.wish h2,.rsvp h2,.am h3,.sheet h2',F.titles,'cursive');
+    rule('.ft,.fs,.amp,.fam b,.venue b,.mv b,.alb h3',F.labels,'"Times New Roman",serif');
+    if(C.page1&&C.page2&&C.page3)css+='body{background:radial-gradient(ellipse at 50% 20%,'+C.page1+' 0%,'+C.page2+' 55%,'+C.page3+' 100%) fixed!important}\n';
+    var r=document.documentElement.style;
+    if(C.accent){r.setProperty("--rose",C.accent);r.setProperty("--deep",C.accent)}
+    if(C.text)r.setProperty("--ink",C.text);
+    if(C.gold)r.setProperty("--rg",C.gold);
+    if(C.cardBack)css+='.back{background:'+C.cardBack+'!important}\n';
+    var S=DEF.fontScale||{};
+    function sc(v){v=parseFloat(v);return v>0?v:1}
+    var N=sc(S.names),T=sc(S.titles),L=sc(S.labels),B=sc(S.body),M=sc(S.numbers);
+    function fs(sel,size,k){if(k!==1)css+=sel+'{font-size:calc('+size+'*'+k+')!important}\n'}
+    /* names */
+    fs('.nm','3.55em*var(--nz,1)',N);fs('.back .sm','2.5em',N);fs('.names','3.7em*var(--nz,1)',N);
+    /* titles */
+    fs('.cal h3,.map h3','38px',T);fs('.wish h2,.rsvp h2,.am h3','40px',T);fs('.sheet h2','36px',T);
+    /* labels */
+    fs('.ft','1.2em',L);fs('.fs','.76em',L);fs('.amp','1.25em',L);fs('.alb h3','19px',L);
+    fs('.fam b','.88em',L/B);fs('.venue b','1.2em',L/B);fs('.mv b','1.2em',L);
+    /* body */
+    fs('.fi','.8em',B);fs('.fp','.72em',B);fs('.inv','1.02em',B);fs('.fam','.9em',B);
+    fs('.venue','.95em',B);fs('.thanks','.88em',B);fs('.hint','18px',B);
+    /* numbers */
+    fs('.fd','.86em',M);fs('.date strong','2.9em',M);fs('.cd span','30px',M);fs('.grid','17px',M);
+    /* dịch chữ lên/xuống: dùng "translate" nên KHÔNG đẩy các phần khác */
+    var O=DEF.fontOffset||{};
+    function of(v){v=parseFloat(v);return isFinite(v)?v:0}
+    var oN=of(O.names),oT=of(O.titles),oL=of(O.labels),oB=of(O.body),oM=of(O.numbers),oBr=of(O.bride),oGr=of(O.groom);
+    function mv(sel,n){if(n!==0)css+=sel+'{translate:0 calc(var(--u,16px)*'+n+')!important}\n'}
+    css+='.card3d{--u:calc(var(--w)/22.5)}\n';
+    mv('.back .sm,.names',oN);
+    mv('.r-bride .nm',oN+oBr);mv('.r-groom .nm',oN+oGr);
+    /* dấu & luôn nằm giữa hai tên: theo trung bình vị trí của tên cô dâu và chú rể */
+    mv('.r-amp',oN+(oBr+oGr)/2+of(O.amp));
+    css+='.r-amp{z-index:3}\n';
+    mv('.cal h3,.map h3,.wish h2,.rsvp h2,.am h3,.sheet h2',oT);
+    mv('.ft,.fs,.alb h3,.mv b',oL);
+    mv('.fam b,.venue b',oL-oB);
+    mv('.fi,.fp,.inv,.thanks,.hint,.fam,.venue',oB);
+    mv('.fd,.date strong,.cd span',oM);
+    st.textContent=css;document.head.appendChild(st);
+  })();
 
   /* ---- fx: petals + glitter ---- */
   function size(){var d=Math.min(devicePixelRatio||1,1.5);cv.width=cv0.width=Math.round(innerWidth*d);cv.height=cv0.height=Math.round(innerHeight*d);cx.setTransform(d,0,0,d,0,0);pc.setTransform(d,0,0,d,0,0)}
