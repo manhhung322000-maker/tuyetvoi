@@ -12,7 +12,7 @@ window.CONFIG = {
      Nếu gõ sai tên hoặc máy khách không có mạng, thiệp tự dùng font dự phòng.
      ============================================================ */
   fonts: {
-    names:   "Great Vibes",              // Tên cô dâu chú rể
+    names:   "Montserrat",              // Tên cô dâu chú rể
     titles:  "Allura",              // Tiêu đề viết tay: Sổ lưu bút, Chỉ đường, Tháng...
     labels:  "Playfair Display",    // Nhãn in hoa: THIỆP MỜI CƯỚI, NHÀ GÁI, Tư gia...
     numbers: "Lora",                // Ngày tháng, đếm ngược, lịch (chọn font số thẳng hàng, không bị lệch dòng)
@@ -25,7 +25,7 @@ window.CONFIG = {
      Sửa số rồi lưu file, tải lại trang (Ctrl+F5) để xem.
      ============================================================ */
   fontScale: {
-    names:   0.9,    // Tên cô dâu chú rể
+    names:   1,    // Tên cô dâu chú rể
     titles:  1,    // Tiêu đề viết tay
     labels:  1,    // Nhãn in hoa
     numbers: 1,    // Ngày tháng, đếm ngược, lịch
@@ -38,7 +38,7 @@ window.CONFIG = {
      1 đơn vị ~ 1 dòng chữ nhỏ (khoảng 17px). Có thể dùng số lẻ: 0.5, -0.3...
      ============================================================ */
   fontOffset: {
-    names:   0.5,    // Tên cô dâu chú rể (cả mặt trước và sau)
+    names:   0,    // Tên cô dâu chú rể (cả mặt trước và sau)
     bride:   0,    // Cộng thêm: riêng tên cô dâu ở mặt trước
     groom:   0,    // Cộng thêm: riêng tên chú rể ở mặt trước
     amp:     0,    // Chỉnh thêm riêng dấu & (mặc định tự nằm giữa hai tên)
@@ -120,6 +120,26 @@ window.CONFIG = {
   groomSide: "NHÀ TRAI",
   atTime: "Vào lúc",
   thanks: "Sự hiện diện của bạn là niềm vinh hạnh của chúng tôi.",
+
+  /* ---- Mặt sau thiệp: chữ cố định ---- */
+  saveDate: "Save the Date",
+  inviteHead: "TRÂN TRỌNG KÍNH MỜI",
+  inviteBody: "Tới dự buổi tiệc chung vui cùng gia đình chúng tôi\nmừng lễ thành hôn",   // \n = xuống dòng
+  yearWord: "NĂM",
+  atWord: "Tại:",
+  flowerTop: "",              // ảnh hoa trái tim ở phía trên (trống = dùng hoa có sẵn). Nên dùng ảnh PNG/WebP nền trong suốt
+  flowerBottom: "",           // ảnh bó hoa ở phía dưới (trống = dùng hoa có sẵn)
+  showFamAddr: false,          // true = hiện thêm địa chỉ nhà trai / nhà gái ở mặt sau
+
+  /* ---- Mặt sau thiệp: MỐC 2 - TIỆC CƯỚI ----
+     Mốc 1 (Lễ thành hôn) lấy từ date, time, lunar, venue, addr ở phần "Thời gian & địa điểm" phía trên.
+     Mốc 2 để trống phần nào thì tự lấy giống mốc 1 (riêng ngày âm lịch chỉ lấy khi cùng ngày). */
+  partyLabel: "TIỆC CƯỚI",
+  partyTime: "17:00",          // giờ tiệc, định dạng 24h  (ĐANG LÀ GIỜ MẪU - hãy sửa lại cho đúng)
+  partyDate: "",               // để trống = cùng ngày với lễ; khác ngày thì ghi dạng năm-tháng-ngày
+  partyLunar: "",              // âm lịch của ngày tiệc (chỉ cần điền khi khác ngày lễ)
+  partyVenue: "",              // để trống = cùng địa điểm với lễ
+  partyAddr: "",               // để trống = cùng địa chỉ với lễ
 
   albumTitle: "Album ảnh cưới",
   albumAll: "Xem toàn bộ album",
